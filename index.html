@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>helloWorld</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        var leftValue = 450, topValue = 100, direction = 'down', walkValue = 1;
+        function update(){
+            if(walkValue == 1){
+                walkValue = 2;
+            } else if(walkValue >= 2){
+                walkValue = 1;
+            }
+
+            document.getElementById("character").style.left = leftValue+"px";
+            document.getElementById("character").style.top = topValue+"px";
+            document.getElementById("character").style.backgroundImage = "url('img/"+direction + walkValue +".png')";
+        }
+        document.onkeydown = function(e) {
+            console.log('e: ', e); 
+            console.log('e.keyCode: ', e.keyCode);
+            
+            if (e.keyCode == 37 && leftValue > 0) { // LEFT
+                leftValue = leftValue - 10;
+                direction = 'left';
+                // console.log(leftValue);
+                console.log(walkValue);
+                // document.getElementById("character").style.left = leftValue+"px";
+                // walkValue =2;           
+                // document.getElementById("character").style.backgroundImage = "url('img/left"+walkValue+".png')";
+                
+            }
+            else if (e.keyCode == 39 && leftValue < 500) { // RIGHT
+                leftValue = leftValue + 10;
+                // console.log(leftValue);      
+                direction = 'right';
+                console.log(walkValue);
+                // document.getElementById("character").style.left = leftValue+"px";
+                // walkValue =2;           
+                // document.getElementById("character").style.backgroundImage = "url('img/right"+walkValue+".png')";
+            }
+            else if (e.keyCode == 40 && topValue < 500) { // DOWN
+                topValue = topValue + 10;
+                // console.log(topValue);
+                console.log(walkValue);
+                direction = 'down';
+            }
+            else if (e.keyCode == 38 && topValue > 0){
+                topValue = topValue - 10;
+                // console.log(topValue);
+                console.log(walkValue);
+                direction = 'top';
+            }          
+            update();
+        }
+    </script>
+</head>
+<body>
+        <div id="background" style="width: 900px; height: 750px; background-image: url('img/white_bg.jpg');">
+        <div id="character" style="width: 59px; height: 86px; background-image: url('img/down1.png'); position: absolute; left: 150px; top: 150px;"></div> 
+
+</body>
+</html>
